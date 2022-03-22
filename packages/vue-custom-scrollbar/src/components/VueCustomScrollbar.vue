@@ -3,9 +3,8 @@ import { computed, ref, watch } from 'vue'
 import { useElementSize } from '@vueuse/core'
 import { useScrollBarWidth } from '../hooks/useScrollbarWidth'
 import { useScrollPosition } from '../hooks/useScrollPosition'
-import Scrollbar from './ScrollBar.vue'
-import DefaultBar from './DefaultBar.vue'
 import { px } from '../utils'
+import Scrollbar from './ScrollBar.vue'
 
 const props = defineProps({
   top: { type: Boolean, default: false },
@@ -13,7 +12,9 @@ const props = defineProps({
   bottom: { type: Boolean, default: false },
   right: { type: Boolean, default: false },
   inner: { type: Boolean, default: false },
-  thickness: { type: [String, Number] }
+  thickness: { type: [String, Number] },
+  color: { type: String, default: '#9d4edd' },
+  trackColor: { type: String, default: '#3c096c'}
 })
 
 const { scrollbarSize } = useScrollBarWidth()
@@ -74,12 +75,15 @@ const scrollbars = computed(() => {
       :size="fakeScrollbarSize[main]" 
       :position="position"
       :thickness="computedThickness"
+      :color="color"
+      :trackColor="trackColor"
       v-model="scrollPosition[main]"
     >
-      <template #bar="bind">
-        <slot name="bar" v-bind="bind">
-          <DefaultBar />
-        </slot>
+      <template #thumb="bind">
+        <slot name="thumb" v-bind="bind" />
+      </template>
+      <template #track="bind">
+        <slot name="track" v-bind="bind" />
       </template>
     </Scrollbar>
   </div>
