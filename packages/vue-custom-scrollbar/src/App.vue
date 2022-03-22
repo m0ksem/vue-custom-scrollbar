@@ -1,21 +1,19 @@
 <script setup lang="ts">
-// This starter template is using Vue 3 <script setup> SFCs
-// Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup
-import HelloWorld from './components/HelloWorld.vue'
+import VueCustomScrollbar from './components/VueCustomScrollbar.vue';
 </script>
 
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Hello Vue 3 + TypeScript + Vite" />
+  <VueCustomScrollbar style="height: 300px; width: 300px" thickness="8px" right bottom left top>
+    <div class="test-long-thing" />
+  </VueCustomScrollbar>
 </template>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+  .test-long-thing {
+    background: linear-gradient(45deg, rgb(255, 23, 15), rgb(41, 23, 202));
+    overflow: auto;
+    resize: both;
+    height: 1000px;
+    width: 1000px;
+  }
 </style>
