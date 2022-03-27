@@ -11,7 +11,7 @@ const createElement = (tag: string, style: Partial<CSSStyleDeclaration>) => {
 
 export const useScrollBarSize = (el?: MaybeRef<HTMLElement>) => {
   const parent = createElement('div', { visibility: 'hidden', overflow: 'scroll' })
-  const child = createElement('div', { height: '200%' })
+  const child = createElement('div', {})
 
   parent.appendChild(child)
 

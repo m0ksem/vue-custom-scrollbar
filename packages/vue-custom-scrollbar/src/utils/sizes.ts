@@ -15,3 +15,7 @@ export const px = (value: number | string, variableName = 'value') => {
   
   throw new Error(`${firstLetterToCapital(variableName)} must be string number in pixels or just a number. For example 200px`)
 }
+
+export const number = (value: number | string) => {
+  return typeof value === 'number' ? value : parseFloat(value)
+}

@@ -1,6 +1,7 @@
 <script setup lang="ts">
-  import { computed, PropType } from 'vue';
-  import { percent, px } from '../utils';
+  import { computed, PropType, ref, watch } from 'vue';
+  import { useScrollDrag } from '../hooks/useScrollDrag';
+  import { percent, px, number } from '../utils';
 
   const props = defineProps({
     modelValue: { 
@@ -21,6 +22,8 @@
     trackColor: { type: String }
   })
 
+  const emit = defineEmits(['update:modelValue'])
+
   const isHorizontalPosition = () => props.position === 'bottom' || props.position === 'top'
 
   const getSizeKey = () => isHorizontalPosition() ? 'width' : 'height'
@@ -39,16 +42,33 @@
     [getThicknessKey()]: px(props.thickness, 'thickness'),
   }))
 
+  const scrollbarClass = computed(() => ({
+    ['scrollbar--']: isFocused.value,
+    [`scrollbar--${props.position}`]: true
+  }))
+
+  const thumbRef = ref()
+  const scrollbarRef = ref()
+
+  const { position: dragPosition, isFocused } = useScrollDrag(scrollbarRef, thumbRef)
+
+  watch(dragPosition, ({ x, y }) => {
+    const newSize = isHorizontalPosition() ? x : y
+
+    emit('update:modelValue', newSize)
+  })
+
   const slotBinds = computed(() => ({
     horizontal: isHorizontalPosition(),
     vertical: !isHorizontalPosition(),
-    placement: isHorizontalPosition() ? 'horizontal' : 'vertical'
+    placement: isHorizontalPosition() ? 'horizontal' : 'vertical',
+    focused: isFocused.value
   }))
 </script>
 
 <template>
-  <div class="scrollbar" :class="`scrollbar--${position}`" :style="scrollbarStyle">
-    <div class="thumb-wrapper" :style="thumbWrapperStyle">
+  <div class="scrollbar" :class="scrollbarClass" :style="scrollbarStyle" ref="scrollbarRef">
+    <div class="thumb-wrapper" :style="thumbWrapperStyle" ref="thumbRef">
       <slot name="thumb" v-bind="slotBinds">
         <div class="thumb thumb--default" :style="{ background: color }" />
       </slot>
@@ -110,6 +130,15 @@
       &--default {
         background: rgba(26, 26, 26, 0.486);
         border-radius: 99999px;
+        transition: all 0.2s ease-in-out;
+      }
+    }
+
+    &--focused {
+      .thumb {
+        &--default {
+          background: rgba(26, 26, 26, 0.6);
+        }
       }
     }
   }

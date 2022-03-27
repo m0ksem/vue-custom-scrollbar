@@ -1,3 +1,4 @@
+import { useEventListener } from "@vueuse/core";
 import { onBeforeUnmount, onMounted, reactive, unref, watch } from "vue";
 import { MaybeRef } from "../types/vue";
 
@@ -14,16 +15,15 @@ export const useScrollPosition = (el: MaybeRef<HTMLElement | undefined>) => {
     scrollPosition.y = target.scrollTop / target.scrollHeight * 100
   }
 
-  onMounted(() => {
-    unref(el)?.addEventListener('scroll', onScroll)
-  })
+  useEventListener(el, 'scroll', onScroll)
 
-  onBeforeUnmount(() => {
-    unref(el)?.removeEventListener('scroll', onScroll)
-  })
-
-  watch(() => el, () => {
-    unref(el)?.addEventListener('scroll', onScroll)
+  watch(scrollPosition, () => {
+    const target = unref(el)
+    if (!target) return
+    target.scrollTo({
+      top: scrollPosition.y / 100 * target.scrollHeight,
+      left: scrollPosition.x / 100 * target.scrollWidth,
+     })
   })
 
   return scrollPosition

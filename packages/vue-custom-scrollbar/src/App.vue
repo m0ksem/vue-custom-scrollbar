@@ -3,11 +3,17 @@ import VueCustomScrollbar from './components/VueCustomScrollbar.vue';
 </script>
 
 <template>
-  <VueCustomScrollbar style="height: 300px; width: 300px" thickness="8px" right bottom left top trackColor="transparent" inner>
+  <VueCustomScrollbar style="height: 500px; width: 300px" thickness="16px" right bottom left top trackColor="transparent" inner>
     <div class="test-long-thing" />
 
-    <template #thumb="{ placement }">
-      <div class="custom-thumb" :class="`custom-thumb--${placement}`"></div>
+    <template #thumb="{ placement, focused }">
+      <div 
+        class="custom-thumb" 
+        :class="{
+         [`custom-thumb--${placement}`]: true,
+          'custom-thumb--focused': focused 
+        }"
+      />
     </template>
   </VueCustomScrollbar>
 </template>
@@ -22,10 +28,25 @@ import VueCustomScrollbar from './components/VueCustomScrollbar.vue';
   }
 
   .custom-thumb {
-    background: linear-gradient(90deg, #480ca8, #4895ef);
+    transition: all 0.5s ease;
+    &--horizontal {
+      background: linear-gradient(90deg, #480ca8, #4895ef);
+    }
 
     &--vertical {
       background: linear-gradient(0, #480ca8, #4895ef);
+    }
+
+    &--focused {
+      &.custom-thumb {
+        &--horizontal {
+          background: linear-gradient(90deg, #c307e4, #5c5af3);
+        }
+
+        &--vertical {
+          background: linear-gradient(0, #c307e4, #5c5af3);
+        }
+      }
     }
   }
 </style>
