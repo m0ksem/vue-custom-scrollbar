@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { computed, ref, watch } from 'vue'
+import { computed, ref } from 'vue'
 import { useElementSize } from '@vueuse/core'
-import { useScrollBarWidth } from '../hooks/useScrollbarWidth'
+import { useScrollBarSize } from '../hooks/useScrollbarSize'
 import { useScrollPosition } from '../hooks/useScrollPosition'
 import { px } from '../utils'
 import Scrollbar from './ScrollBar.vue'
@@ -17,7 +17,7 @@ const props = defineProps({
   trackColor: { type: String, default: '#3c096c'}
 })
 
-const { scrollbarSize } = useScrollBarWidth()
+const { scrollbarSize } = useScrollBarSize()
 
 const computedThickness = computed(() => props.thickness || scrollbarSize.value)
 
