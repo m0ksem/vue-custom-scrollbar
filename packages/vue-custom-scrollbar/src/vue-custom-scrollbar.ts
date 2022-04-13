@@ -1,0 +1,1 @@
+export { default as VueCustomScrollbar } from './components/VueCustomScrollbar.vue';

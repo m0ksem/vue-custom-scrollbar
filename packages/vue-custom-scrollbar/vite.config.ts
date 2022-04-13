@@ -6,8 +6,8 @@ export default defineConfig({
   plugins: [vue()],
   build: {
     lib: {
-      entry: './src/main',
-      name: 'vue-custom-scrollbar'
+      entry: './src/vue-custom-scrollbar',
+      name: 'vue-custom-scrollbar',
     },
   }
 })
