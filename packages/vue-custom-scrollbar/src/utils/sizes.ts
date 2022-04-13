@@ -1,4 +1,4 @@
-import { upperFirst } from 'lodash'
+import upperFirst from 'lodash/upperFirst'
 
 /** Converts number to percent if number is not a string */
 export const percent = (value: number | string, variableName = 'value') => {

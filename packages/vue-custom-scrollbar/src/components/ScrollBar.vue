@@ -1,7 +1,7 @@
 <script setup lang="ts">
   import { computed, PropType, ref, watch } from 'vue';
   import { useScrollDrag } from '../hooks/useScrollDrag';
-  import { percent, px, number } from '../utils';
+  import { percent, px } from '../utils';
 
   const props = defineProps({
     modelValue: { 

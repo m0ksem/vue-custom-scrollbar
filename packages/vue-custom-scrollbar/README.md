@@ -1,6 +1,36 @@
 # Vue custom scrollbar
 
-### Usage example
+## Component api
+
+### Props
+| Name | Type | Description | Default | 
+| ---- | ---- | ----------- | ------- | 
+| top |  Boolean | Renders top scrollbar |  false|
+| left |  Boolean | Renders left scrollbar |  false |
+| bottom |  Boolean | Renders bottom scrollbar |  false |
+| right |  Boolean | Renders right scrollbar |  false |
+| inner |  Boolean | Renders scrollbar inside of container |  false |
+| thickness |  [String, Number] | Thichness of scrollbar | - |
+| color |  String | Tumb color |  '#9d4edd' |
+| trackColor |  String | Scrollbar background color |  '#3c096c'|
+
+### Slots
+| Name | Description | Bind |
+| ---- | ----------- | ---- |
+| default | Content inside scrollbale container | - | 
+| thumb | Thing that user need to move using mouse | `ScrollbarSlotBind` |
+| track | Scrollbar background | `ScrollbarSlotBind` |
+
+```ts
+type ScrollbarSlotBind = {
+  horizontal: boolean,
+  vertical: boolean,
+  placement: 'horizontal' | 'vertical',
+  focused: boolean
+}
+```
+
+## Usage example
 
 ```vue
 <script setup lang="ts">

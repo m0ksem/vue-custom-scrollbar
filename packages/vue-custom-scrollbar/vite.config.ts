@@ -9,5 +9,8 @@ export default defineConfig({
       entry: './src/vue-custom-scrollbar',
       name: 'vue-custom-scrollbar',
     },
-  }
+    rollupOptions: {
+      external: ['vue'],
+    }
+  },
 })

@@ -1,4 +1,4 @@
-import { clamp } from "lodash";
+import clamp from "lodash/clamp";
 import { useEventListener, MaybeRef } from "@vueuse/core";
 import { ref, unref } from "vue";
 import { useFocusedByClick } from "./useFocusedByClick";
