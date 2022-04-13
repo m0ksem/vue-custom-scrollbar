@@ -1,7 +1,6 @@
 {
-  "name": "vue-custom-scrollbar",
-  "private": true,
-  "version": "0.0.1",
+  "name": "@m0ksem/vue-custom-scrollbar",
+  "version": "0.0.1-alpha1",
   "main": "./dist/vue-custom-scrollbar.umd.js",
   "module": "./dist/vue-custom-scrollbar.es.js",
   "types": "./dist/vue-custom-scrollbar.d.ts",

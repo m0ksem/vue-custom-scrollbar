@@ -1,11 +1,58 @@
-# Vue 3 + Typescript + Vite
+# Vue custom scrollbar
 
-This template should help get you started developing with Vue 3 and Typescript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+### Usage example
 
-## Recommended IDE Setup
+```vue
+<script setup lang="ts">
+import VueCustomScrollbar from './components/VueCustomScrollbar.vue';
+</script>
 
-- [VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar)
+<template>
+  <VueCustomScrollbar style="height: 500px; width: 300px" thickness="16px" right bottom left top trackColor="transparent" inner>
+    <div class="test-long-thing" />
 
-## Type Support For `.vue` Imports in TS
+    <template #thumb="{ placement, focused }">
+      <div 
+        class="custom-thumb" 
+        :class="{
+         [`custom-thumb--${placement}`]: true,
+          'custom-thumb--focused': focused 
+        }"
+      />
+    </template>
+  </VueCustomScrollbar>
+</template>
 
-Since TypeScript cannot handle type information for `.vue` imports, they are shimmed to be a generic Vue component type by default. In most cases this is fine if you don't really care about component prop types outside of templates. However, if you wish to get actual prop types in `.vue` imports (for example to get props validation when using manual `h(...)` calls), you can enable Volar's `.vue` type support plugin by running `Volar: Switch TS Plugin on/off` from VSCode command palette.
+<style lang="scss">
+  .test-long-thing {
+    background: linear-gradient(45deg, #10002b, #e0aaff);
+    overflow: auto;
+    resize: both;
+    height: 1000px;
+    width: 1000px;
+  }
+
+  .custom-thumb {
+    transition: all 0.5s ease;
+    &--horizontal {
+      background: linear-gradient(90deg, #480ca8, #4895ef);
+    }
+
+    &--vertical {
+      background: linear-gradient(0, #480ca8, #4895ef);
+    }
+
+    &--focused {
+      &.custom-thumb {
+        &--horizontal {
+          background: linear-gradient(90deg, #c307e4, #5c5af3);
+        }
+
+        &--vertical {
+          background: linear-gradient(0, #c307e4, #5c5af3);
+        }
+      }
+    }
+  }
+</style>
+```
