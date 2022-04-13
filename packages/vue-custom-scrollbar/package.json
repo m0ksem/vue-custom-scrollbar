@@ -1,6 +1,6 @@
 {
   "name": "@m0ksem/vue-custom-scrollbar",
-  "version": "0.0.1-alpha3",
+  "version": "0.0.1",
   "main": "./dist/vue-custom-scrollbar.js",
   "module": "./dist/vue-custom-scrollbar.mjs",
   "types": "./dist/vue-custom-scrollbar.d.ts",
@@ -33,6 +33,9 @@
   "exports": {
     ".": {
       "import": "./dist/vue-custom-scrollbar.mjs"
+    },
+    "./css": {
+      "import": "./dist/vue-custom-scrollbar.css"
     }
   }
 }

@@ -1,5 +1,23 @@
 # Vue custom scrollbar
 
+Custom scrollbar for vue3.
+
+## Instalation
+
+```sh
+yarn add @m0ksem/vue-custom-scrollbar
+```
+
+```ts
+// main.js
+import '@m0ksem/vue-custom-scrollbar/css'
+import { VueCustomScrollbar } from '@m0ksem/vue-custom-scrollbar'
+...
+app.component('scrollbar', VueCustomScrollbar)
+```
+
+For nuxt3, lib needs to be transpiled.
+
 ## Component api
 
 ### Props
@@ -34,7 +52,7 @@ type ScrollbarSlotBind = {
 
 ```vue
 <script setup lang="ts">
-import VueCustomScrollbar from './components/VueCustomScrollbar.vue';
+import { VueCustomScrollbar } from '@m0ksem/vue-custom-scrollbar'
 </script>
 
 <template>
