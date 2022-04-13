@@ -8,9 +8,15 @@ export default defineConfig({
     lib: {
       entry: './src/vue-custom-scrollbar',
       name: 'vue-custom-scrollbar',
+      fileName: (format) => format === 'es' ? 'vue-custom-scrollbar.mjs' : 'vue-custom-scrollbar.js',
     },
     rollupOptions: {
-      external: ['vue'],
-    }
+      external: ['vue', '@vueuse/core'],
+      output: {
+        globals: {
+          vue: 'Vue',
+        }
+      }
+    },
   },
 })

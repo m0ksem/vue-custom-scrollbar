@@ -1,28 +1,38 @@
 {
   "name": "@m0ksem/vue-custom-scrollbar",
-  "version": "0.0.1-alpha1",
-  "main": "./dist/vue-custom-scrollbar.umd.js",
-  "module": "./dist/vue-custom-scrollbar.es.js",
+  "version": "0.0.1-alpha3",
+  "main": "./dist/vue-custom-scrollbar.js",
+  "module": "./dist/vue-custom-scrollbar.mjs",
   "types": "./dist/vue-custom-scrollbar.d.ts",
   "scripts": {
     "serve": "vite",
     "build": "yarn build:vite && yarn build:types",
     "build:vite": "vite build",
     "build:types": "vue-tsc --declaration --emitDeclarationOnly",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "publish": "npm publish --access public"
   },
-  "peerDependencies": {
-    "vue": "^3.2.0"
+  "dependencies": {
+    "@vueuse/core": "^8.1.2",
+    "vue": "3.2.31"
   },
   "devDependencies": {
     "@types/lodash": "^4.14.181",
     "@vitejs/plugin-vue": "^2.2.0",
-    "@vueuse/core": "^8.1.2",
     "lodash": "^4.17.21",
     "sass": "^1.49.9",
     "typescript": "^4.5.4",
     "vite": "^2.8.0",
     "vite-plugin-external": "^1.2.3",
     "vue-tsc": "^0.29.8"
+  },
+  "sideEffects": false,
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "import": "./dist/vue-custom-scrollbar.mjs"
+    }
   }
 }
