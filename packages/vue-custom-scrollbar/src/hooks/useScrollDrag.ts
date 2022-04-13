@@ -1,8 +1,6 @@
-import { computed } from "@vue/reactivity";
-import { useEventListener } from "@vueuse/core";
+import { clamp } from "lodash";
+import { useEventListener, MaybeRef } from "@vueuse/core";
 import { ref, unref } from "vue";
-import { MaybeRef } from "../types/vue";
-import { clamp } from "../utils";
 import { useFocusedByClick } from "./useFocusedByClick";
 
 export const useScrollDrag = (
@@ -27,8 +25,8 @@ export const useScrollDrag = (
     const offsetTop = child.top - parent.top
     const offsetLeft = child.left - parent.left
 
-    const newY = clamp(0, offsetTop + ev.movementY, parent.height - child.height)
-    const newX = clamp(0, offsetLeft + ev.movementX, parent.width - child.width)
+    const newY = clamp(offsetTop + ev.movementY, 0, parent.height - child.height)
+    const newX = clamp(offsetLeft + ev.movementX, 0, parent.width - child.width)
 
     const yPercent = newY / parent.height * 100
     const xPercent = newX / parent.width * 100

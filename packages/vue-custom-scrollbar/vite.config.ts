@@ -8,6 +8,6 @@ export default defineConfig({
     lib: {
       entry: './src/main',
       name: 'vue-custom-scrollbar'
-    }
+    },
   }
 })

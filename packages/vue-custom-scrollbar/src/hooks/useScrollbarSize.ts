@@ -1,5 +1,5 @@
-import { computed, ref, Ref, unref } from "vue"
-import { MaybeRef } from "../types/vue"
+import { computed, unref } from "vue"
+import { MaybeRef } from "@vueuse/core"
 
 const createElement = (tag: string, style: Partial<CSSStyleDeclaration>) => {
   const el = document.createElement(tag)

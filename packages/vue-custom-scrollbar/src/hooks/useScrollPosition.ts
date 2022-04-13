@@ -1,6 +1,5 @@
-import { useEventListener } from "@vueuse/core";
-import { onBeforeUnmount, onMounted, reactive, unref, watch } from "vue";
-import { MaybeRef } from "../types/vue";
+import { useEventListener, MaybeRef } from "@vueuse/core";
+import { reactive, unref, watch } from "vue";
 
 export const useScrollPosition = (el: MaybeRef<HTMLElement | undefined>) => {
   const scrollPosition = reactive({
