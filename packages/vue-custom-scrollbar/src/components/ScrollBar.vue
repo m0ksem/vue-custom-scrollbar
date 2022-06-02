@@ -43,7 +43,7 @@
   }))
 
   const scrollbarClass = computed(() => ({
-    ['scrollbar--']: isFocused.value,
+    ['scrollbar--focused']: isFocused.value,
     [`scrollbar--${props.position}`]: true
   }))
 

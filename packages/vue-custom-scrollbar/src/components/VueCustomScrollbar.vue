@@ -21,11 +21,6 @@ const { scrollbarSize } = useScrollBarSize()
 
 const computedThickness = computed(() => props.thickness || scrollbarSize.value)
 
-const scrollableElStyle = computed(() => ({
-  'margin-right':  px(-scrollbarSize.value),
-  'margin-bottom': px(-scrollbarSize.value),
-}))
-
 const innerElStyle = computed(() => {
   if (props.inner) { return undefined }
 
@@ -45,8 +40,8 @@ const { width: scrollableWidth, height: scrollableHeight } = useElementSize(scro
 const { width: innerWidth, height: innerHeight } = useElementSize(innerRef)
 
 const fakeScrollbarSize = computed(() => ({
-  x: (scrollableWidth.value - scrollbarSize.value) / innerWidth.value * 100,
-  y: (scrollableHeight.value - scrollbarSize.value) / innerHeight.value * 100
+  x: (scrollableWidth.value) / innerWidth.value * 100,
+  y: (scrollableHeight.value) / innerHeight.value * 100
 }))
 
 type ScrollbarParams = { main: 'x' | 'y', cross: 'x' | 'y', position: 'top' | 'left' | 'right' | 'bottom' }
@@ -63,14 +58,14 @@ const scrollbars = computed(() => {
 
 <template>
   <div class="vue-custom-scrollbar">
-    <div class="vue-custom-scrollbar__scrollable" :style="scrollableElStyle" ref="scrollableRef">
+    <div class="vue-custom-scrollbar__scrollable" ref="scrollableRef">
       <div class="vue-custom-scrollbar__inner" :style="innerElStyle" ref="innerRef">
         <slot />
       </div>      
     </div>
 
     <Scrollbar 
-      v-for="{ main, position} in scrollbars"
+      v-for="{ main, position } in scrollbars"
       :key="position"
       :size="fakeScrollbarSize[main]" 
       :position="position"
@@ -91,7 +86,6 @@ const scrollbars = computed(() => {
 
 <style lang="scss" scoped>
 .vue-custom-scrollbar {
-  overflow: hidden;
   display: flex;
   position: relative;
   box-sizing: border-box;
@@ -102,6 +96,11 @@ const scrollbars = computed(() => {
     min-width: 100%;
     min-height: 100%;
     box-sizing: border-box;
+
+    scrollbar-width: none;
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
   }
 
   &__inner {
