@@ -1,6 +1,6 @@
 {
   "name": "@m0ksem/vue-custom-scrollbar",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "main": "./dist/vue-custom-scrollbar.js",
   "module": "./dist/vue-custom-scrollbar.mjs",
   "types": "./dist/vue-custom-scrollbar.d.ts",
@@ -13,7 +13,7 @@
     "prepack": "npm run build",
     "publish": "npm publish --access public"
   },
-  "dependencies": {
+  "peerDependencies": {
     "@vueuse/core": "^8.1.2",
     "vue": "3.2.31"
   },

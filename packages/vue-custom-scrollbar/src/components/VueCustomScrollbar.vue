@@ -104,8 +104,8 @@ const scrollbars = computed(() => {
   }
 
   &__inner {
-    width: max-content;
-    height: max-content;
+    width: fit-content;
+    height: fit-content;
   }
 }
 </style>

@@ -1,4 +1,4 @@
-import { useEventListener, MaybeRef } from "@vueuse/core";
+import { useEventListener, MaybeRef, reactiveComputed } from "@vueuse/core";
 import { reactive, unref, watch } from "vue";
 
 export const useScrollPosition = (el: MaybeRef<HTMLElement | undefined>) => {
@@ -16,14 +16,20 @@ export const useScrollPosition = (el: MaybeRef<HTMLElement | undefined>) => {
 
   useEventListener(el, 'scroll', onScroll)
 
-  watch(scrollPosition, () => {
+  const scroll = () => {
     const target = unref(el)
     if (!target) return
     target.scrollTo({
       top: scrollPosition.y / 100 * target.scrollHeight,
       left: scrollPosition.x / 100 * target.scrollWidth,
      })
+  }
+  
+  return new Proxy(scrollPosition, {
+    set(target, key, value) {
+      target[key] = value
+      scroll()
+      return true
+    }
   })
-
-  return scrollPosition
 }
