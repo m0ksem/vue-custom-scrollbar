@@ -12,9 +12,11 @@ const props = defineProps({
   bottom: { type: Boolean, default: false },
   right: { type: Boolean, default: false },
   inner: { type: Boolean, default: false },
+  autoHide: { type: Boolean, default: false },
+  autoHideTimeout: { type: Number, default: 5000 },
   thickness: { type: [String, Number] },
   color: { type: String, default: '#9d4edd' },
-  trackColor: { type: String, default: '#3c096c'}
+  trackColor: { type: String, default: '#3c096c'},
 })
 
 const { scrollbarSize } = useScrollBarSize()
@@ -72,6 +74,8 @@ const scrollbars = computed(() => {
       :thickness="computedThickness"
       :color="color"
       :trackColor="trackColor"
+      :hide="autoHide"
+      :hide-timeout="autoHideTimeout"
       v-model="scrollPosition[main]"
     >
       <template #thumb="bind">

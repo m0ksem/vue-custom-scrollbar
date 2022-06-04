@@ -3,6 +3,12 @@ import VueCustomScrollbar from './components/VueCustomScrollbar.vue';
 </script>
 
 <template>
+  <h1>Default</h1>
+  <VueCustomScrollbar style="height: 500px; width: 300px" thickness="16px" right bottom left top trackColor="transparent" inner>
+    <div class="test-long-thing" />
+  </VueCustomScrollbar>
+
+  <h1>Slots</h1>
   <VueCustomScrollbar style="height: 500px; width: 300px" thickness="16px" right bottom left top trackColor="transparent" inner>
     <div class="test-long-thing" />
 
@@ -15,6 +21,11 @@ import VueCustomScrollbar from './components/VueCustomScrollbar.vue';
         }"
       />
     </template>
+  </VueCustomScrollbar>
+
+  <h1>Auto-hide</h1>
+    <VueCustomScrollbar style="height: 500px; width: 300px" thickness="16px" auto-hide right bottom left top trackColor="transparent" inner>
+    <div class="test-long-thing" />
   </VueCustomScrollbar>
 </template>
 

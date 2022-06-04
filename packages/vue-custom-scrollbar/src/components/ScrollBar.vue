@@ -19,10 +19,15 @@
     size: { type: [String, Number], required: true },
     thickness: { type: [String, Number], default: '18px' },
     color: { type: String },
-    trackColor: { type: String }
+    trackColor: { type: String },
+    hide: { type: Boolean },
+    hideTimeout: { type: Number },
   })
 
   const emit = defineEmits(['update:modelValue'])
+
+  const thumbRef = ref<HTMLElement>()
+  const scrollbarRef = ref<HTMLElement>()
 
   const isHorizontalPosition = () => props.position === 'bottom' || props.position === 'top'
 
@@ -44,11 +49,11 @@
 
   const scrollbarClass = computed(() => ({
     ['scrollbar--focused']: isFocused.value,
-    [`scrollbar--${props.position}`]: true
+    [`scrollbar--${props.position}`]: true,
+    ['scrollbar--hidden']: props.hide,
   }))
 
-  const thumbRef = ref()
-  const scrollbarRef = ref()
+  const autoHideDelay = computed(() => `${props.hideTimeout}ms`)
 
   const { position: dragPosition, isFocused } = useScrollDrag(scrollbarRef, thumbRef)
 
@@ -138,6 +143,17 @@
       .thumb {
         &--default {
           background: rgba(26, 26, 26, 0.6);
+        }
+      }
+    }
+
+    &--hidden {
+      transition: opacity 0.2s ease-in-out v-bind(autoHideDelay);
+      opacity: 0;
+      &:not(.scrollbar--focused) {
+        &:hover {
+          opacity: 1.0;
+          transition-delay: 0ms;          
         }
       }
     }
