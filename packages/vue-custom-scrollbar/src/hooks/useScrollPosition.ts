@@ -26,8 +26,8 @@ export const useScrollPosition = (el: MaybeRef<HTMLElement | undefined>) => {
   }
   
   return new Proxy(scrollPosition, {
-    set(target, key, value) {
-      target[key] = value
+    set(target, key: string, value) {
+      (target as any)[key] = value
       scroll()
       return true
     }
