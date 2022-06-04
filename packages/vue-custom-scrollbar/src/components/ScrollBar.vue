@@ -1,5 +1,6 @@
 <script setup lang="ts">
   import { computed, PropType, ref, watch } from 'vue';
+  import { useDebounceFn } from '@vueuse/core'
   import { useScrollDrag } from '../hooks/useScrollDrag';
   import { percent, px } from '../utils';
 
@@ -47,8 +48,20 @@
     [getThicknessKey()]: px(props.thickness, 'thickness'),
   }))
 
+  const isScrolling = ref(false)
+
+  let isScrollingTimeout: ReturnType<typeof setTimeout>
+  watch(() => props.modelValue, () => {
+    isScrolling.value = true
+    clearTimeout(isScrollingTimeout)
+    isScrollingTimeout = setTimeout(() => {
+      isScrolling.value = false
+    }, 300)
+  })
+
   const scrollbarClass = computed(() => ({
     ['scrollbar--focused']: isFocused.value,
+    [`scrollbar--scrolling`]: isScrolling.value,
     [`scrollbar--${props.position}`]: true,
     ['scrollbar--hidden']: props.hide,
   }))
@@ -151,9 +164,9 @@
       transition: opacity 0.2s ease-in-out v-bind(autoHideDelay);
       opacity: 0;
       &:not(.scrollbar--focused) {
-        &:hover {
-          opacity: 1.0;
-          transition-delay: 0ms;          
+        &.scrollbar--scrolling, &:hover {
+            opacity: 1.0;
+            transition-delay: 0ms;   
         }
       }
     }
