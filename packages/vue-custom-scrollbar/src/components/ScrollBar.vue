@@ -165,8 +165,8 @@
       opacity: 0;
       &:not(.scrollbar--focused) {
         &.scrollbar--scrolling, &:hover {
-            opacity: 1.0;
-            transition-delay: 0ms;   
+          opacity: 1.0;
+          transition-delay: 0ms;   
         }
       }
     }
