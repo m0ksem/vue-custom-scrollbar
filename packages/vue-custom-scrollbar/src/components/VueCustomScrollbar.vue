@@ -98,8 +98,9 @@ const scrollbars = computed(() => {
     box-sizing: border-box;
 
     scrollbar-width: none;
-    ::-webkit-scrollbar {
-      width: 10px;
+    &::-webkit-scrollbar {
+      width: 0;
+      display: none;
     }
   }
 
