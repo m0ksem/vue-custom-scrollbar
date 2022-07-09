@@ -10,6 +10,6 @@
   "scripts": {
     "serve": "yarn workspace @m0ksem/vue-custom-scrollbar serve",
     "build": "yarn workspace @m0ksem/vue-custom-scrollbar build",
-    "publish": "yarn workspace @m0ksem/vue-custom-scrollbar publish"
+    "release": "yarn workspace @m0ksem/vue-custom-scrollbar release"
   }
 }

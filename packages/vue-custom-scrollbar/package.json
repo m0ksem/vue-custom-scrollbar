@@ -14,12 +14,14 @@
     "release": "bumpp --commit --push --tag && npm publish"
   },
   "peerDependencies": {
-    "@vueuse/core": "^8.1.2",
+    "@vueuse/core": "^8.9.1",
     "vue": "^3.0.0"
   },
   "devDependencies": {
     "@types/lodash": "^4.14.181",
+    "@types/node": "^18.0.3",
     "@vitejs/plugin-vue": "^2.2.0",
+    "@vueuse/core": "^8.1.2",
     "bumpp": "^8.2.1",
     "lodash": "^4.17.21",
     "sass": "^1.49.9",
