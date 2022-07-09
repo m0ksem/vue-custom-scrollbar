@@ -11,7 +11,7 @@
     "build:types": "vue-tsc --declaration --emitDeclarationOnly",
     "preview": "vite preview",
     "prepack": "npm run build",
-    "release": "bumpp --commit --push --tag && npm publish"
+    "release": "bumpp --commit && npm publish"
   },
   "peerDependencies": {
     "@vueuse/core": "^8.9.1",
