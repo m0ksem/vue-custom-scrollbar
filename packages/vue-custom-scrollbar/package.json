@@ -1,6 +1,6 @@
 {
   "name": "@m0ksem/vue-custom-scrollbar",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "main": "./dist/vue-custom-scrollbar.js",
   "module": "./dist/vue-custom-scrollbar.mjs",
   "types": "./dist/vue-custom-scrollbar.d.ts",
@@ -10,15 +10,17 @@
     "build:vite": "vite build",
     "build:types": "vue-tsc --declaration --emitDeclarationOnly",
     "preview": "vite preview",
-    "prepack": "npm run build"
+    "prepack": "npm run build",
+    "release": "bumpp --commit --push --tag && npm publish"
   },
   "peerDependencies": {
     "@vueuse/core": "^8.1.2",
-    "vue": "3.2.31"
+    "vue": "^3.0.0"
   },
   "devDependencies": {
     "@types/lodash": "^4.14.181",
     "@vitejs/plugin-vue": "^2.2.0",
+    "bumpp": "^8.2.1",
     "lodash": "^4.17.21",
     "sass": "^1.49.9",
     "typescript": "^4.5.4",
